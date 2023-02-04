@@ -2,7 +2,7 @@
   "name": "unsplash-api-fetcher",
   "version": "1.0.0",
   "description": "",
-  "main": "./lib/start.js",
+  "main": "./src/start.js",
   "type": "module",
   "scripts": {
     "start": "concurrently \"babel src --watch --out-dir lib --copy-files\" \"nodemon -e js,hbs,handlebars ./lib/start.js\"",
