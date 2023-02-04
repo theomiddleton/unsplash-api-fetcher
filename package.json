@@ -2,11 +2,16 @@
   "name": "unsplash-api-fetcher",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/start.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"babel src --watch --out-dir lib --copy-files\" \"nodemon -e js,hbs,handlebars ./lib/start.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rmdir /s /q lib",
+    "clean-L": "rm -rf lib",
+    "deploy": "gcloud app deploy",
+    "monitor": "gcloud app logs tail -s default",
+    "build": "babel src --out-dir lib --copy-files"
   },
   "repository": {
     "type": "git",
@@ -21,6 +26,21 @@
   "homepage": "https://github.com/theomiddleton/unsplash-api-fetcher#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "express-handlebars": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/register": "^7.0.0-beta.46",
+    "babel-eslint": "^8.2.3",
+    "nodemon": "^1.12.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "5.3.1",
+    "concurrently": "^3.5.1"
   }
 }
